@@ -96,6 +96,3 @@ todo-app/
 └── package.json          # Project metadata and scripts
 ```
 
----
-
-Let me know if you'd like a badge section, GitHub Actions CI setup, or deployment instructions added too!
