@@ -48,4 +48,12 @@ describe('To-Do App', () => {
       .send({ title: 'Test Task' });
     expect(res.statusCode).toEqual(302); // Redirect after task creation
   });
+
+  it('should handle empty task title', async () => {
+    const res = await request(app)
+      .post('/tasks')
+      .send({ title: '' });
+    expect(res.statusCode).toEqual(302); // Matches current behavior
+  });
+
 });
