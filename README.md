@@ -37,7 +37,7 @@ npm install
 
 3. **Create a `.env` file** in the root directory  
 ```env
-MONGO_URI=mongodb://localhost:27017/todoapp
+MONGO_URI=mongodb://localhost/todoapp
 PORT=3000
 ```
 
