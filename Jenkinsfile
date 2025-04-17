@@ -71,7 +71,7 @@
 pipeline {
     agent any
     tools {
-        nodejs 'Node16' // Must match Global Tool Configuration
+        nodejs 'Node16'
     }
     environment {
         MONGO_URI = 'mongodb://127.0.0.1:27017/testdb'
@@ -84,7 +84,7 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                bat 'npm ci' // Use npm ci for consistent installs
+                bat 'npm install'
             }
         }
         stage('Run Tests') {
@@ -93,26 +93,10 @@ pipeline {
                 bat 'start /B mongod --dbpath C:\\data\\db || exit 0'
                 // Clean test database
                 bat 'mongo %MONGO_URI% --eval "db.dropDatabase()" || exit 0'
-                // Run tests with coverage threshold
+                // Run tests with coverage
                 bat 'npm test -- --coverage --testResultsProcessor=jest-junit'
                 // Publish JUnit results
                 junit 'test-results.xml'
-            }
-        }
-        stage('Build Docker Image') {
-            when {
-                expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
-            }
-            steps {
-                bat 'docker-compose build'
-            }
-        }
-        stage('Deploy') {
-            when {
-                expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
-            }
-            steps {
-                bat 'docker-compose up -d'
             }
         }
     }
@@ -129,8 +113,6 @@ pipeline {
             ])
             // Archive coverage artifacts
             archiveArtifacts artifacts: 'coverage/**/*', allowEmptyArchive: true
-            // Clean up Docker containers
-            bat 'docker-compose down || exit 0'
         }
         success {
             echo 'Pipeline completed successfully!'
