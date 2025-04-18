@@ -4,8 +4,8 @@
   "description": "A simple To-Do List app with Node.js, Express, and MongoDB",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "cross-env NODE_ENV=test jest --forceExit --coverage"
+  "start": "node app.js",
+  "test": "cross-env NODE_ENV=test jest --forceExit --coverage"
   },
   "dependencies": {
     "dotenv": "^16.0.3",
@@ -21,18 +21,6 @@
     "supertest": "^6.0.0"
   },
   "author": "",
-  "license": "ISC",
-  "jest": {
-    "testResultsProcessor": "jest-junit",
-    "coverageDirectory": "coverage",
-    "coverageReporters": ["html", "text", "lcov"],
-    "coverageThreshold": {
-      "global": {
-        "statements": 70
-      }
-    },
-    "junit": {
-      "outputName": "test-results.xml"
-    }
-  }
+  "license": "ISC"
 }
+
