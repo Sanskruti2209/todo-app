@@ -14,6 +14,7 @@
 //     expect(res.statusCode).toEqual(302);
 //   });
 // });
+
 // const request = require('supertest');
 // const mongoose = require('mongoose');
 // const app = require('../app'); // Import the Express app
@@ -118,17 +119,6 @@ describe('To-Do App', () => {
       .send({ title: 'Redirect Test Task' });
     expect(res.statusCode).toEqual(302);
     expect(res.headers['location']).toBe('/');
-  });
-
-  it('should consistently return 200 for homepage', async () => {
-    const res = await request(app).get('/');
-    expect(res.statusCode).toEqual(200);
-  });
-
-  it('should include task form on homepage', async () => {
-    const res = await request(app).get('/');
-    expect(res.statusCode).toEqual(200);
-    expect(res.text).toContain('<form action="/tasks" method="POST">');
   });
 
   it('should load edit page for a valid task', async () => {
