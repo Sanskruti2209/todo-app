@@ -70,7 +70,7 @@ describe('To-Do App', () => {
   // Before all tests, start the server
   beforeAll(async () => {
     server = app.listen(0); // Use port 0 to let the OS assign a free port
-    await mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/testdb', {
+    await mongoose.connect(process.env.MONGO_URI || '', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
